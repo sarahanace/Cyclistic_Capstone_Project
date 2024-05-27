@@ -44,7 +44,26 @@ GROUP BY
 ORDER BY 
 all_trips DESC LIMIT 7
 	
+SELECT member_casual, start_station_name,
+AVG(start_lat) AS start_lat, 
+AVG(start_lng) AS start_lng,
+COUNT(*) AS total_rides
+FROM `data-cyclistic-capstone.Combined_year_data.cyclistic_reformatted`
+WHERE member_casual = 'casual'
+AND start_station_name IS NOT NULL
+GROUP BY member_casual, start_station_name
+ORDER BY total_rides DESC LIMIT 7
 
+SELECT member_casual, start_station_name,
+AVG(start_lat) AS start_lat, 
+AVG(start_lng) AS start_lng,
+COUNT(*) AS total_rides
+FROM `data-cyclistic-capstone.Combined_year_data.cyclistic_reformatted`
+WHERE member_casual = 'member'
+AND start_station_name IS NOT NULL
+GROUP BY member_casual, start_station_name
+ORDER BY total_rides DESC LIMIT 7
+	
 SELECT member_casual, 
 AVG(ride_length) AS avg_ride
 FROM
