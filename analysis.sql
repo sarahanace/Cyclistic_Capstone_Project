@@ -32,6 +32,18 @@ FROM
 ORDER BY
 	ride_length DESC 
 
+SELECT  
+day_of_week,
+COUNT(DISTINCT ride_id) AS all_trips,
+SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) AS member_trips,
+SUM(CASE WHEN member_casual = 'casual' THEN 1 ELSE 0 END) AS casual_trips
+FROM 
+`data-cyclistic-capstone.Combined_year_data.cyclistic_reformatted`
+GROUP BY 
+1
+ORDER BY 
+all_trips DESC LIMIT 7
+	
 
 SELECT member_casual, 
 AVG(ride_length) AS avg_ride
